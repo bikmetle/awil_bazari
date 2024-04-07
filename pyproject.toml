@@ -9,8 +9,18 @@ readme = "README.md"
 python = "^3.11"
 aiogram = {extras = ["full"], version = "^3.4.1"}
 sqlalchemy = {extras = ["full"], version = "^2.0.29"}
+pre-commit = "^3.7.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+target-version = ["py311"]
+
+
+[tool.ruff]
+select = ["E", "F"]
+ignore = ["E501", "E741"]
