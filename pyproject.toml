@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "awıl-bazarı"
+version = "0.1.0"
+description = ""
+authors = ["Hamid Bikmetle <bikmetle@proton.me>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiogram = {extras = ["full"], version = "^3.4.1"}
+sqlalchemy = {extras = ["full"], version = "^2.0.29"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
