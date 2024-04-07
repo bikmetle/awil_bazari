@@ -10,6 +10,7 @@ python = "^3.11"
 aiogram = {extras = ["full"], version = "^3.4.1"}
 sqlalchemy = {extras = ["full"], version = "^2.0.29"}
 pre-commit = "^3.7.0"
+pydantic-settings = "^2.2.1"
 
 
 [build-system]
