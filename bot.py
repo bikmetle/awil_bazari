@@ -21,7 +21,7 @@ dp = Dispatcher()
 @dp.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
     await message.answer(
-        f"Hi, {hbold(message.from_user.full_name)}!\nClick the button to proceed.",
+        f"Hi, {hbold(message.from_user.full_name)}!\nWhat do you want to do?",
         reply_markup=role_markup,
     )
     await UserDAO.upsert(tg_id=message.chat.id, name=message.chat.full_name)
