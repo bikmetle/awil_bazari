@@ -11,11 +11,13 @@ from aiogram.types.callback_query import CallbackQuery
 from aiogram.utils.markdown import hbold
 
 from config import settings
-from dao.base import UserDAO
-from my_keyboards import MyCallback, role_markup
+from dao.base import ItemDAO, UserDAO
+from my_keyboards import MyCallback, get_item_markup, role_markup
 
 TOKEN = settings.BOT_TOKEN
 dp = Dispatcher()
+
+# TODO add menu button
 
 
 @dp.message(CommandStart())
@@ -29,7 +31,10 @@ async def command_start_handler(message: Message) -> None:
 
 @dp.callback_query(MyCallback.filter(F.text == "sell"))
 async def sell_button_handler(query: CallbackQuery, callback_data: MyCallback):
-    await query.message.answer("What do you want to sell?")
+    items = await ItemDAO.find_all()
+    await query.message.answer(
+        "What do you want to sell?", reply_markup=get_item_markup(items)
+    )
     await query.answer()
 
 

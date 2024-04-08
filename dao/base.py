@@ -3,7 +3,7 @@ import logging
 from sqlalchemy import insert, select, update
 from sqlalchemy.exc import IntegrityError
 
-from database import User, async_session_maker
+from database import Item, User, async_session_maker
 
 logger = logging.getLogger(__name__)
 
@@ -58,3 +58,7 @@ class UserDAO(BaseDAO):
                 )
                 await session.execute(query)
             await session.commit()
+
+
+class ItemDAO(BaseDAO):
+    model = Item
