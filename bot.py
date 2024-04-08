@@ -14,7 +14,7 @@ from config import settings
 from database import User, async_session_maker
 from my_keyboards import MyCallback, role_markup
 
-TOKEN = settings.get("BOT_TOKEN")
+TOKEN = settings.BOT_TOKEN
 dp = Dispatcher()
 
 

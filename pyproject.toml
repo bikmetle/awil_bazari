@@ -11,6 +11,8 @@ aiogram = {extras = ["full"], version = "^3.4.1"}
 sqlalchemy = {extras = ["full"], version = "^2.0.29"}
 pre-commit = "^3.7.0"
 pydantic-settings = "^2.2.1"
+asyncpg = "^0.29.0"
+alembic = "^1.13.1"
 
 
 [build-system]
