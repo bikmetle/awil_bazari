@@ -11,8 +11,14 @@ from aiogram.types.callback_query import CallbackQuery
 from aiogram.utils.markdown import hbold
 
 from config import settings
-from dao.base import ItemDAO, UserDAO
-from my_keyboards import MyCallback, get_item_markup, role_markup
+from dao.base import ItemDAO, SellerDAO, UserDAO
+from my_keyboards import (
+    ItemCallback,
+    RoleCallback,
+    get_item_markup,
+    get_volume_markup,
+    role_markup,
+)
 
 TOKEN = settings.BOT_TOKEN
 dp = Dispatcher()
@@ -29,8 +35,9 @@ async def command_start_handler(message: Message) -> None:
     await UserDAO.upsert(tg_id=message.chat.id, name=message.chat.full_name)
 
 
-@dp.callback_query(MyCallback.filter(F.text == "sell"))
-async def sell_button_handler(query: CallbackQuery, callback_data: MyCallback):
+@dp.callback_query(RoleCallback.filter(F.text == "sell"))
+async def sell_button_handler(query: CallbackQuery, callback_data: RoleCallback):
+    await SellerDAO.upsert(user_id=query.message.chat.id)
     items = await ItemDAO.find_all()
     await query.message.answer(
         "What do you want to sell?", reply_markup=get_item_markup(items)
@@ -38,9 +45,18 @@ async def sell_button_handler(query: CallbackQuery, callback_data: MyCallback):
     await query.answer()
 
 
-@dp.callback_query(MyCallback.filter(F.text == "buy"))
-async def buy_button_handler(query: CallbackQuery, callback_data: MyCallback):
+@dp.callback_query(RoleCallback.filter(F.text == "buy"))
+async def buy_button_handler(query: CallbackQuery, callback_data: RoleCallback):
     await query.message.answer("What do you want to buy?")
+    await query.answer()
+
+
+@dp.callback_query(ItemCallback.filter())
+async def item_button_handler(query: CallbackQuery, callback_data: ItemCallback):
+    await query.message.answer(
+        f"How many/much {callback_data.volume_kind}?",
+        reply_markup=get_volume_markup(callback_data.volume_kind),
+    )
     await query.answer()
 
 

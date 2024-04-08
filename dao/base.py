@@ -3,7 +3,7 @@ import logging
 from sqlalchemy import insert, select, update
 from sqlalchemy.exc import IntegrityError
 
-from database import Item, User, async_session_maker
+from database import Item, Seller, User, async_session_maker
 
 logger = logging.getLogger(__name__)
 
@@ -52,8 +52,8 @@ class UserDAO(BaseDAO):
             except IntegrityError:
                 await session.rollback()
                 query = (
-                    update(User)
-                    .where(User.tg_id == data.get("tg_id"))
+                    update(cls.model)
+                    .where(cls.model.tg_id == data.get("tg_id"))
                     .values(name=data.get("name"))
                 )
                 await session.execute(query)
@@ -62,3 +62,17 @@ class UserDAO(BaseDAO):
 
 class ItemDAO(BaseDAO):
     model = Item
+
+
+class SellerDAO(BaseDAO):
+    model = Seller
+
+    @classmethod
+    async def upsert(cls, **data):
+        async with async_session_maker() as session:
+            try:
+                query = insert(cls.model).values(**data)
+                await session.execute(query)
+                await session.commit()
+            except IntegrityError:
+                pass

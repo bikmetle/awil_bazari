@@ -55,3 +55,5 @@ class Product(Base):
 
 
 # class Deal(Base)
+# class Comment(Base)
+# class Rate(Base)
