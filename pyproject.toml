@@ -7,3 +7,16 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.114.0",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+hello = "backend:hello"
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.6.2",
+    "fastapi-cli>=0.0.5",
+]
