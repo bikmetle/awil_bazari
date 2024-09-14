@@ -5,7 +5,18 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "aiogram-tests>=1.0.3",
-    "aiogram>=3.12.0",
-    "fastapi>=0.114.0",
+    "fastapi[standard]>=0.114.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+hello = "backend:hello"
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.6.2",
+    "fastapi-cli>=0.0.5",
 ]
