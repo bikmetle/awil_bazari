@@ -1,4 +1,5 @@
 ignore/
+private/
 .venv
 **/__pycache__
 **/*.pyc
