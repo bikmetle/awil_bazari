@@ -19,4 +19,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 
 ENTRYPOINT []
 
-CMD ["fastapi", "dev", "--host", "0.0.0.0", "src/backend/main.py"]
+CMD ["fastapi", "dev", "--host", "0.0.0.0", "main.py"]
