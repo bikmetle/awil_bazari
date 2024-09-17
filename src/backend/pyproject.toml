@@ -13,7 +13,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.scripts]
-hello = "backend:hello"
+hello = "main:hello"
 
 [tool.uv]
 dev-dependencies = [

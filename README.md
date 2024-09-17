@@ -5,7 +5,7 @@ A [`run_backend.sh`](./run_backend.sh) utility is provided for quickly building 
 To build and run the web application in the container using `docker run`:
 
 ```console
-$ ./run_backend.sh
+./run_backend.sh
 ```
 
 To build and run the web application using `docker compose`:
@@ -19,25 +19,25 @@ docker compose up --watch
 To check that the environment is up-to-date after image builds:
 
 ```console
-$ ./run_backend.sh uv sync --frozen
+./run_backend.sh uv sync --frozen
 ```
 
 To enter a `bash` shell in the container:
 
 ```console
-$ ./run_backend.sh /bin/bash
+./run_backend.sh /bin/bash
 ```
 
 To build the image without running anything:
 
 ```console
-$ docker build .
+docker build .
 ```
 
 To build the multistage image:
 
 ```console
-$ docker build . --file multistage.Dockerfile
+docker build . --file multistage.Dockerfile
 ```
 
 # docker stuff
